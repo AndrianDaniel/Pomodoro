@@ -23,6 +23,13 @@ def reset_timer():
 	global reps
 	reps = 0
 # ---------------------------- TIMER MECHANISM ------------------------------- #
+def start_and_reset_timer():
+	global reps
+	reps = 0
+	if timer:
+		window.after_cancel(timer)
+	start_timer()
+
 def start_timer():
 	global reps
 	reps += 1
@@ -75,7 +82,7 @@ canvas.grid(row=1, column=1)
 title_label = Label(text="Timer", fg=GREEN, bg=YELLOW, font=(FONT_NAME, 35, "bold"))
 title_label.grid(row=0, column=1)
 
-start_button = Button(text="Start", command=start_timer, highlightthickness=0)
+start_button = Button(text="Start", command=start_and_reset_timer, highlightthickness=0)
 start_button.grid(row=2, column=0)
 
 reset_button = Button(text="Reset", highlightthickness=0, command=reset_timer)
